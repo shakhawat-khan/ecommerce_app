@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/src/features/account/account_screen.dart';
+import 'package:ecommerce_app/src/features/not_found/not_found_screen.dart';
 import 'package:ecommerce_app/src/features/orders_list/orders_list_screen.dart';
 import 'package:ecommerce_app/src/features/product_page/product_screen.dart';
 import 'package:ecommerce_app/src/features/shopping_cart/shopping_cart_screen.dart';
@@ -82,4 +83,7 @@ final GoRouter router = GoRouter(
           ),
         ]),
   ],
+  errorBuilder: (context, state) {
+    return const NotFoundScreen();
+  },
 );
