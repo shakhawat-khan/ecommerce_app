@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:ecommerce_app/src/constants/test_products.dart';
 import 'package:ecommerce_app/src/features/product_page/product_screen.dart';
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
+import 'package:ecommerce_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:ecommerce_app/src/constants/app_sizes.dart';
 import 'package:ecommerce_app/src/features/products_list/product_card.dart';
+import 'package:go_router/go_router.dart';
 
 /// A widget that displays the list of products that match the search query.
 class ProductsGrid extends StatelessWidget {
@@ -20,7 +22,7 @@ class ProductsGrid extends StatelessWidget {
         ? Center(
             child: Text(
               'No products found'.hardcoded,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           )
         : ProductsLayoutGrid(
@@ -29,11 +31,10 @@ class ProductsGrid extends StatelessWidget {
               final product = products[index];
               return ProductCard(
                 product: product,
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => ProductScreen(productId: product.id),
-                  ),
-                ),
+                onPressed: () {
+                  context.goNamed(AppRoute.prroduct.name,
+                      params: {'id': product.id});
+                },
               );
             },
           );
